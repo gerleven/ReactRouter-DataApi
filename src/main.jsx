@@ -29,6 +29,7 @@ const myRouter = createBrowserRouter([
     loader: rootLoader, //Recien cuando el user acceda a la ruta "/" se usara la funcion rootLoader para cargar de manera asincronica los contactos, los cuales se usan para geneerar los Links de manera dinamica con un map
     action: rootAction,
     errorElement: <ErrorPage/>,
+    basename: "/ReactRouter-DataApi",
     children: [
       {
         errorElement: <ErrorPage/>,
@@ -93,6 +94,7 @@ function buildRouterFromElements(){
       loader={rootLoader}
       action={rootAction}
       errorElement={<ErrorPage />}
+      basename="/ReactRouter-DataApi"
     >
       <Route errorElement={<ErrorPage />}>
         <Route index element={<Index />} />
