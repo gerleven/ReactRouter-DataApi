@@ -22,14 +22,13 @@ import {action as destroyAction} from "./routes/destroy"
 import Index from './routes'
 import ErrorPage from "./error-page"
 
-const myRouter = createBrowserRouter([
-  {
+const myRouter = createBrowserRouter(
+  [{
     path: "/",
     element: <Root/>,
     loader: rootLoader, //Recien cuando el user acceda a la ruta "/" se usara la funcion rootLoader para cargar de manera asincronica los contactos, los cuales se usan para geneerar los Links de manera dinamica con un map
     action: rootAction,
     errorElement: <ErrorPage/>,
-    basename: "/ReactRouter-DataApi",
     children: [
       {
         errorElement: <ErrorPage/>,
@@ -63,9 +62,11 @@ const myRouter = createBrowserRouter([
         ]
       }
     ],
-  },
+    
+  }],
+  {basename: "/ReactRouter-DataApi"}
   
-]);
+);
 
 const myRouterFromElements = buildRouterFromElements();
 
@@ -94,7 +95,6 @@ function buildRouterFromElements(){
       loader={rootLoader}
       action={rootAction}
       errorElement={<ErrorPage />}
-      basename="/ReactRouter-DataApi"
     >
       <Route errorElement={<ErrorPage />}>
         <Route index element={<Index />} />
