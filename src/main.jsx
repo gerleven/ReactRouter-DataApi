@@ -64,7 +64,7 @@ const myRouter = createBrowserRouter(
     ],
     
   }],
-  {basename: "/ReactRouter-DataApi"}
+  // {basename: "/ReactRouter-DataApi"}
   
 );
 

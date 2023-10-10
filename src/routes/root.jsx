@@ -1,11 +1,11 @@
 import {Outlet,Link,NavLink,useLoaderData,useActionData,Form,redirect,useNavigation,useSubmit} from "react-router-dom";
 import { getContacts, createContact } from "../contacts";
 import { useState, useEffect } from "react";
-import {useSessionTime} from "../hooks/admin";
+import {useSessionTime, useExampleContact } from "../hooks/admin";
 
 //Esta funcion sera invocada cuando el usuario acceda a la ruta "/" para cargar de manera asincronica los contactos que luego usamos para generar los Links de manera dinamica
 export async function loader({ request }) {
-    const url = new URL(request.url); //Esta request es enviado por el <Form> del search
+  const url = new URL(request.url); //Esta request es enviado por el <Form> del search
   const q = url.searchParams.get("q") || ""; //q is the URLsearchParams
   const contacts = await getContacts(q);
   return { contacts, q };
@@ -21,6 +21,7 @@ export default function Root() {
   const { contacts, q } = useLoaderData();
   const navigation = useNavigation(); //navigation has this props: [state, location, formData, json, text, formAction, formMethod]
   const submit = useSubmit();
+  useExampleContact();
 
   //Tradicionalmente la forma de mantener sincronizado el value del search seria con un useEffect(()=>{},[q]), una variable de estado [q,setQ] y un value={q} y onChange={setQ} en el input. Pero de esta forma no ahorramos todo eso y es mucho mas simple
   useEffect(() => {
@@ -30,32 +31,14 @@ export default function Root() {
   //Boolean value abour if the current location is searching or not:
   const searching = navigation.location && new URLSearchParams(navigation.location.search).has("q"); //This boolean value indicate if the app is searching something
 
-  const remainingTime = useSessionTime();
+  // const remainingTime = useSessionTime();
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    submit(event.target, {method: "get", action:"/logout"});
-  };
 
   function test(){
-    console.log("state: "+navigation.state);
+    contacts;
+    debugger
   }
 
-  //Test:
-  // useEffect(()=>{
-    //   if(navigation.location){
-      //     console.log("State: "+navigation.state);
-      //     console.log("Path Name: "+navigation.location.pathname);
-      //     console.log("search query: "+navigation.location.search);
-      //     console.log("Navigation: ");
-      //     console.table(navigation.location);
-    //   }
-  // }, [navigation]);
-  // useEffect(()=>{
-    //   if(navigation.location){
-      //     console.log("State: "+navigation.state);
-    //   }
-  // }, [navigation.state]);
   
   return (
     <>
@@ -96,7 +79,7 @@ export default function Root() {
         {/* Nav */}
         <nav>
 
-          {contacts.length ? (
+          {contacts.length>0 ? (
             <ul>
               {contacts.map((contact) => (
                 <li key={contact.id}>
@@ -128,26 +111,25 @@ export default function Root() {
             </p>
           )}
         </nav>
-        <p>Session Time remaining: {remainingTime}</p>
+        {/* <p>Session Time remaining: {remainingTime}</p> */}
       </div>
 
       {/* Details */}
-      {false&&<div id="detail" className={navigation.state==="loading"?"loading":""}>
-        <h1>test</h1>
-        {navigation.location && <p>Yendo a: {navigation.location.pathname} con la query: {navigation.location.search}</p>}
-        <p>Location: {navigation.location?"yes":"No"}</p>
-        {/* <p>State: {navigation.state}</p> */}
-        <button onClick={test}>Test</button>
-        {/* <p>Time remaining 1: {remainingTime}</p>
-        <Form onSubmit={handleSubmit}>
-        <input type="text" name="username" placeholder="Username" />
-        <button type="submit">Submit</button>
-      </Form> */}
-      </div>}
-
       <div id="detail" className={navigation.state==="loading"?"loading":""}>
+            {false&&<div id="detail" className={navigation.state==="loading"?"loading":""}>
+              <h1>Test Area</h1>
+              {navigation.location && <p>Yendo a: {navigation.location.pathname} con la query: {navigation.location.search}</p>}
+              <p>Location: {navigation.location?"yes":"No"}</p>
+              {/* <p>State: {navigation.state}</p> */}
+              <button onClick={test}>Test</button>
+              {/* <p>Time remaining 1: {remainingTime}</p>
+              <Form onSubmit={handleSubmit}>
+              <input type="text" name="username" placeholder="Username" />
+              <button type="submit">Submit</button>
+              </Form> */}
+            </div>}
             <Outlet/>
-        </div>
+      </div>
     </>
   );
 }

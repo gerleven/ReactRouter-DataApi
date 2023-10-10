@@ -12,10 +12,10 @@ export async function getContacts(query) {
   return contacts.sort(sortBy("last", "createdAt"));
 }
 
-export async function createContact() {
+export async function createContact(contact=null) {
   await fakeNetwork();
   let id = Math.random().toString(36).substring(2, 9);
-  let contact = { id, createdAt: Date.now() };
+  if(contact==null){ contact = { id, createdAt: Date.now() }; }
   let contacts = await getContacts();
   contacts.unshift(contact);
   await set(contacts);
