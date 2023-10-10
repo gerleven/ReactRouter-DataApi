@@ -365,7 +365,7 @@ i {
 }
 
 #zero-state a {
-  color: inherit;
+  color: rgb(0, 140, 255);
 }
 #zero-state ul {
   text-align: left;

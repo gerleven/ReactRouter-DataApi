@@ -18,6 +18,13 @@ export default function Index() {
         <li>Edit or delete an already created contact</li>
         <li>Mark a contact as a favorite</li>
       </ul>
+
+      <h4>Repository and Deployed site Links</h4>
+      <p>Deployed site: <a href="https://gerleven.github.io/ReactRouter-DataApi/">https://gerleven.github.io/ReactRouter-DataApi/</a></p>
+      <p>GitHub repository: <a href="https://github.com/gerleven/ReactRouter-DataApi">https://github.com/gerleven/ReactRouter-DataApi</a></p>
+      
+      <p>My Linkedin profile: <a href="https://www.linkedin.com/in/german-levental/">linkedin.com/in/german-levental</a></p>
+       
       
     </div>
   );
