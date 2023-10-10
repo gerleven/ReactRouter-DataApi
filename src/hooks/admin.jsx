@@ -41,17 +41,18 @@ export const useSessionTime = () => {
 };
 
 export const useExampleContact = ()=>{
-  const [firstTime, setFirstTime] = useState(true)
+  // const [firstTime, setFirstTime] = useState(true)
+  let firstTime = true;
   const submit=useSubmit();
 
   useEffect(()=>{
     const id = Math.random().toString(36).substring(2, 9);
     const createdAt= Date.now();
-    
+
     if(firstTime===true){
+      firstTime = false;
       getContacts().then(
         (contactList)=>{
-          setFirstTime(false);
           if(contactList.length===0){
             let contact = { 
               "id": id,
