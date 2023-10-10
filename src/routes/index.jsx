@@ -1,7 +1,7 @@
 export default function Index() {
   
   return (
-    <p id="zero-state">
+    <div id="zero-state">
       <h3>About this Project:</h3>
       This is a demo for React Router <b>V6.4</b> with <b>Data API</b>.
       
@@ -19,6 +19,6 @@ export default function Index() {
         <li>Mark a contact as a favorite</li>
       </ul>
       
-    </p>
+    </div>
   );
 }
