@@ -9,7 +9,7 @@ export default defineConfig(({ command, mode, ssrBuild }) => {
   // Set the third parameter to '' to load all env regardless of the `VITE_` prefix.
   const env = loadEnv(mode, process.cwd(), ['VITE_','MY_',''])
   //loadEnv(mode, directory, ['prefijos'])
-
+  
   if (command === 'serve') {
     return {
       // dev specific config
@@ -33,9 +33,9 @@ export default defineConfig(({ command, mode, ssrBuild }) => {
       base: "./",
       define: {
         BASENAME: JSON.stringify("/ReactRouter-DataApi"),
-        MY_VARIABLE1_CONFIG_BUILD: JSON.stringify("A STRING VALUE IN BUILD PRODUCTION"),
-        MY_VARIABLE2_CONFIG_BUILD: JSON.stringify(env.VITE_MY_VARIABLE_ENV_PRODUCTION),
-        MY_VARIABLE3_CONFIG_BUILD: JSON.stringify(env.MY_VARIABLE_ENV_PRODUCTION),
+        MY_VARIABLE1_CONFIG_BUILD_1: JSON.stringify("A STRING VALUE IN BUILD PRODUCTION"),
+        MY_VARIABLE2_CONFIG_BUILD_2: JSON.stringify(env.VITE_MY_VARIABLE_ENV_PRODUCTION),
+        MY_VARIABLE3_CONFIG_BUILD_3: JSON.stringify(env.MY_VARIABLE_ENV_PRODUCTION),
         
       }
     }

@@ -75,7 +75,7 @@ export const useExampleContact = ()=>{
 }
 
 export const useEnvVariablesTest = ()=>{
-  const [showTestInfo, setShowTestInfo] = useState(true);
+  const [showTestInfo, setShowTestInfo] = useState(false);
 
   if(showTestInfo){
     //Env Variables:
@@ -113,9 +113,9 @@ export const useEnvVariablesTest = ()=>{
     if(import.meta.env.PROD){
       //Config Build:
       console.log("\n# Env Config Build:");
-      console.log("MY_VARIABLE1_CONFIG_BUILD: "+MY_VARIABLE1_CONFIG_BUILD);
-      console.log("MY_VARIABLE2_CONFIG_BUILD: "+MY_VARIABLE2_CONFIG_BUILD);
-      console.log("MY_VARIABLE3_CONFIG_BUILD: "+MY_VARIABLE3_CONFIG_BUILD);
+      console.log("MY_VARIABLE1_CONFIG_BUILD: "+MY_VARIABLE1_CONFIG_BUILD_1);
+      console.log("MY_VARIABLE2_CONFIG_BUILD: "+MY_VARIABLE2_CONFIG_BUILD_2);
+      console.log("MY_VARIABLE3_CONFIG_BUILD: "+MY_VARIABLE3_CONFIG_BUILD_3);
     } else {
       console.log("\n# Env Config Build: FALSE");
     }
