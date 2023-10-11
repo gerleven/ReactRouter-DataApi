@@ -1,4 +1,3 @@
-//asd
 import React from 'react'
 import ReactDOM from 'react-dom/client'
 import './index.css'
@@ -64,8 +63,7 @@ const myRouter = createBrowserRouter(
     ],
     
   }],
-  // {basename: "/ReactRouter-DataApi"}
-  
+  {basename: BASENAME}
 );
 
 const myRouterFromElements = buildRouterFromElements();

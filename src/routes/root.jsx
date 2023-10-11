@@ -1,7 +1,7 @@
 import {Outlet,Link,NavLink,useLoaderData,useActionData,Form,redirect,useNavigation,useSubmit} from "react-router-dom";
 import { getContacts, createContact } from "../contacts";
 import { useState, useEffect } from "react";
-import {useSessionTime, useExampleContact } from "../hooks/admin";
+import {useSessionTime, useExampleContact, useEnvVariablesTest } from "../hooks/admin";
 
 //Esta funcion sera invocada cuando el usuario acceda a la ruta "/" para cargar de manera asincronica los contactos que luego usamos para generar los Links de manera dinamica
 export async function loader({ request }) {
@@ -22,6 +22,7 @@ export default function Root() {
   const navigation = useNavigation(); //navigation has this props: [state, location, formData, json, text, formAction, formMethod]
   const submit = useSubmit();
   useExampleContact();
+  const [showTestInfo, setShowTestInfo] = useEnvVariablesTest();
 
   //Tradicionalmente la forma de mantener sincronizado el value del search seria con un useEffect(()=>{},[q]), una variable de estado [q,setQ] y un value={q} y onChange={setQ} en el input. Pero de esta forma no ahorramos todo eso y es mucho mas simple
   useEffect(() => {
@@ -35,8 +36,7 @@ export default function Root() {
 
 
   function test(){
-    contacts;
-    debugger
+    setShowTestInfo(prev=>!prev)
   }
 
   

@@ -73,3 +73,53 @@ export const useExampleContact = ()=>{
     }
   },[]);
 }
+
+export const useEnvVariablesTest = ()=>{
+  const [showTestInfo, setShowTestInfo] = useState(true);
+
+  if(showTestInfo){
+    //Env Variables:
+    console.log("# Env Variables:");
+    console.log("BASE_URL: "+import.meta.env.BASE_URL);
+    console.log("MODE: "+import.meta.env.MODE);
+    console.log("PROD: "+import.meta.env.PROD);
+    console.log("DEV: "+import.meta.env.DEV);
+  
+    //Env Development:
+    console.log("\n# import.meta.env.development:");
+    console.log("VITE_BASENAME:"+import.meta.env.VITE_BASENAME);
+    console.log("VITE_MY_VARIABLE_ENV_DEVELOPMENT:"+import.meta.env.VITE_MY_VARIABLE_ENV_DEVELOPMENT);
+    console.log("MY_VARIABLE_ENV_DEVELOPMENT:"+import.meta.env.MY_VARIABLE_ENV_DEVELOPMENT); //Undefined, porque si no empieza por VITE_ no puede ser leida directamente con el import.meta.env
+  
+    //Env Production:
+    console.log("\n# import.meta.env.production:");
+    console.log("VITE_BASENAME:"+import.meta.env.VITE_BASENAME);
+    console.log("VITE_MY_VARIABLE_ENV_PRODUCTION:"+import.meta.env.VITE_MY_VARIABLE_ENV_PRODUCTION);
+    console.log("MY_VARIABLE_ENV_PRODUCTION:"+import.meta.env.MY_VARIABLE_ENV_PRODUCTION); //Undefined, porque si no empieza por VITE_ no puede ser leida directamente con el import.meta.env
+  
+    if(import.meta.env.DEV){
+      //Config Serve:
+      console.log("\n# Env Config Serve:");
+      console.log("MY_VARIABLE1_CONFIG_SERVE: "+MY_VARIABLE1_CONFIG_SERVE);
+      console.log("MY_VARIABLE2_CONFIG_SERVE: "+MY_VARIABLE2_CONFIG_SERVE);
+      console.log("MY_VARIABLE3_CONFIG_SERVE: "+MY_VARIABLE3_CONFIG_SERVE);
+      console.log("MY_VARIABLE4_CONFIG_SERVE: "+MY_VARIABLE4_CONFIG_SERVE);
+      console.log("MY_VARIABLE5_CONFIG_SERVE: "+MY_VARIABLE5_CONFIG_SERVE);
+      console.log("MY_VARIABLE6_CONFIG_SERVE: "+MY_VARIABLE6_CONFIG_SERVE);
+    } else {
+      console.log("\n# Env Config Serve: FALSE");
+    }
+  
+    if(import.meta.env.PROD){
+      //Config Build:
+      console.log("\n# Env Config Build:");
+      console.log("MY_VARIABLE1_CONFIG_BUILD: "+MY_VARIABLE1_CONFIG_BUILD);
+      console.log("MY_VARIABLE2_CONFIG_BUILD: "+MY_VARIABLE2_CONFIG_BUILD);
+      console.log("MY_VARIABLE3_CONFIG_BUILD: "+MY_VARIABLE3_CONFIG_BUILD);
+    } else {
+      console.log("\n# Env Config Build: FALSE");
+    }
+
+  }
+  return [showTestInfo, setShowTestInfo];
+}
