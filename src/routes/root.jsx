@@ -17,29 +17,29 @@ export async function action() {
   return redirect(`/contacts/${contact.id}/edit`);
 }
 
+
+
+/* ROOT */
 export default function Root() {
   const { contacts, q } = useLoaderData();
   const navigation = useNavigation(); //navigation has this props: [state, location, formData, json, text, formAction, formMethod]
   const submit = useSubmit();
   useExampleContact();
   const [showTestInfo, setShowTestInfo] = useEnvVariablesTest();
-
+  
   //Tradicionalmente la forma de mantener sincronizado el value del search seria con un useEffect(()=>{},[q]), una variable de estado [q,setQ] y un value={q} y onChange={setQ} en el input. Pero de esta forma no ahorramos todo eso y es mucho mas simple
-  useEffect(() => {
-    document.getElementById("searchNameInput").value = q;
-  }, [q]);
+  useEffect(() => {document.getElementById("searchNameInput").value = q;}, [q]);
 
   //Boolean value abour if the current location is searching or not:
   const searching = navigation.location && new URLSearchParams(navigation.location.search).has("q"); //This boolean value indicate if the app is searching something
 
-  // const remainingTime = useSessionTime();
-
+  const remainingSessionTime = useSessionTime();
 
   function test(){
     setShowTestInfo(prev=>!prev)
-  }
+  }  
 
-  
+
   return (
     <>
       <div id="sidebar">
@@ -111,7 +111,8 @@ export default function Root() {
             </p>
           )}
         </nav>
-        {/* <p>Session Time remaining: {remainingTime}</p> */}
+        {remainingSessionTime}
+        
       </div>
 
       {/* Details */}

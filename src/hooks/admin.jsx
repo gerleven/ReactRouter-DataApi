@@ -1,43 +1,42 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useSubmit, useLocation } from "react-router-dom";
 import { getContacts, createContact } from "../contacts";
 
 
-const SESSION_DURATION = (5*60);
+const SESSION_DURATION = (1000*5*60);
 
 export const useSessionTime = () => {
     const [remainingTime, setRemainingTime] = useState(SESSION_DURATION);
-    let timer = 0;
+    let intervalId = useRef(0);
+    let timerId = useRef(0);
     const submit = useSubmit();
     const location = useLocation();
-  
+
+    const refreshTime = () => {
+      setRemainingTime(prev=>{return (prev > 0)?(prev - 1000):0});
+    };
+
     //Count Down
     useEffect(() => {
-      timer = setInterval(
-        () => {
-          setRemainingTime(prevRemainingTime => {
-            if (prevRemainingTime > 0) {
-              return prevRemainingTime - 1;
-            } else {
-              clearInterval(timer);
-              return 0;
-            }
-          });
-        }, 1000);
-        
-      return ()=>{clearInterval(timer);} // Limpiar el intervalo al desmontar el componente
+      intervalId.current = setInterval(refreshTime, 1000);
+      return () => clearInterval(intervalId.current);
     }, []);
 
     //Time Out
     useEffect(() => {
-      const timer = setTimeout(() => {
-        submit(null, { method: "post", action: "/logout" });
-      }, SESSION_DURATION*1000);
-  
-      return () => clearTimeout(timer);
+      timerId.current = setTimeout(() => {
+        submit(null, { action: "/logout" });
+        clearTimeout(timerId.current);
+      }, SESSION_DURATION);
+      
+      if(location.pathname!="/logout"){
+        setRemainingTime(SESSION_DURATION);
+      }
+
+      return () => clearTimeout(timerId.current);
     }, [submit, location]);
-  
-    return remainingTime;
+
+    return (<p>Remaining Session Time {new Intl.DateTimeFormat('es-Ar',{minute: "numeric", second: "numeric", }).format(remainingTime)}</p>);
 };
 
 export const useExampleContact = ()=>{
