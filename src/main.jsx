@@ -19,7 +19,7 @@ import {loader as logoutLoader, action as logoutAction} from "./routes/logout"
 import {action as destroyAction} from "./routes/destroy"
 
 import Index from './routes'
-import ErrorPage from "./error-page"
+import ErrorPage from "./routes/error-page"
 
 const myRouter = createBrowserRouter(
   [{
