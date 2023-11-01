@@ -25,11 +25,11 @@ export const useSessionTime = () => {
     //Time Out
     useEffect(() => {
       timerId.current = setTimeout(() => {
-        submit(null, { action: "/logout" });
+        submit(null, { action: "/timeout" });
         clearTimeout(timerId.current);
       }, SESSION_DURATION);
       
-      if(location.pathname!="/logout"){
+      if(location.pathname!="/timeout"){
         setRemainingTime(SESSION_DURATION);
       }
 

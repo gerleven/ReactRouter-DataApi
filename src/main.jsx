@@ -12,8 +12,8 @@ import {loader as contactLoader, action as contactAction} from "./routes/contact
 import EditContact from "./routes/edit";
 import {loader as contactEditLoader, action as contactEditAction} from "./routes/edit"
 
-import LogoutPage from "./routes/logout"
-import {loader as logoutLoader, action as logoutAction} from "./routes/logout"
+import TimeOutPage from "./routes/timeout-page"
+import {loader as timeoutLoader, action as timeoutAction} from "./routes/timeout-page"
 
 //import DestroyPage
 import {action as destroyAction} from "./routes/destroy"
@@ -53,10 +53,10 @@ const myRouter = createBrowserRouter(
             action: destroyAction
           },
           {
-            path: "logout/",
-            element: <LogoutPage/>,
-            loader: logoutLoader,
-            action: logoutAction
+            path: "timeout/",
+            element: <TimeOutPage/>,
+            loader: timeoutLoader,
+            action: timeoutAction
           },
         ]
       }
@@ -113,10 +113,10 @@ function buildRouterFromElements(){
           action={destroyAction}
         />
         <Route
-          path="logout/"
-          element={<LogoutPage />}
-          loader={logoutLoader}
-          action={logoutAction}
+          path="timeout/"
+          element={<TimeOutPage />}
+          loader={timeoutLoader}
+          action={timeoutAction}
         />
       </Route>
     </Route>
