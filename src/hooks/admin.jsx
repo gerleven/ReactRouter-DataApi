@@ -59,7 +59,7 @@ export const useExampleContact = ()=>{
               "first": "German",
               "last": "Levental",
               "twitter": "@germanlevental",
-              "avatar": "https://media.licdn.com/dms/image/D4D03AQEpI__z31J7Ew/profile-displayphoto-shrink_800_800/0/1699226037876?e=1704931200&v=beta&t=qvQ8F-nADXe6blebmZWOfQHIuM5e_wjROmo8IAeMv5k",
+              "avatar": "https://avatars.githubusercontent.com/u/15304193?v=4",
               "notes": "This is an example of contact!",
               "favorite": true
             };
