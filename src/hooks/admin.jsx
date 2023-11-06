@@ -59,7 +59,7 @@ export const useExampleContact = ()=>{
               "first": "German",
               "last": "Levental",
               "twitter": "@germanlevental",
-              "avatar": "https://media.licdn.com/dms/image/C4E03AQEYqNIBWkR25g/profile-displayphoto-shrink_200_200/0/1556768978154?e=1701302400&v=beta&t=LM8LtMFOf7XEpWBreLzg9M-zoQMmZ8OWQYNmS2caT24",
+              "avatar": "https://media.licdn.com/dms/image/D4D03AQEpI__z31J7Ew/profile-displayphoto-shrink_800_800/0/1699226037876?e=1704931200&v=beta&t=qvQ8F-nADXe6blebmZWOfQHIuM5e_wjROmo8IAeMv5k",
               "notes": "This is an example of contact!",
               "favorite": true
             };
